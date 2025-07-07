@@ -97,65 +97,48 @@
   </footer>
 
   <!-- Firebase SDKs -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
-    import { getFirestore, collection, addDoc, getDocs, serverTimestamp, query, orderBy } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+ <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyBtAcvleEv_PFTyq3AaeJzAR52QnGZCuDc",
-      authDomain: "campaign-nominatebaraa.firebaseapp.com",
-      projectId: "campaign-nominatebaraa",
-      storageBucket: "campaign-nominatebaraa.firebasestorage.app",
-      messagingSenderId: "260641916589",
-      appId: "1:260641916589:web:b889857299b7d8f1d2e824"
-    };
+  const firebaseConfig = {
+    apiKey: "AIzaSyBtAcvleEv_PFTyq3AaeJzAR52QnGZCuDc",
+    authDomain: "campaign-nominatebaraa.firebaseapp.com",
+    projectId: "campaign-nominatebaraa",
+    storageBucket: "campaign-nominatebaraa.firebasestorage.app",
+    messagingSenderId: "260641916589",
+    appId: "1:260641916589:web:b889857299b7d8f1d2e824"
+  };
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
 
-    const form = document.getElementById("shoutoutForm");
-    const shoutoutsDiv = document.getElementById("shoutouts");
+  document.getElementById("shoutoutForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const name = document.getElementById("name").value.trim();
-      const role = document.getElementById("role").value.trim();
-      const award = document.getElementById("award").value.trim();
-      const message = document.getElementById("message").value.trim();
+    const name = document.getElementById("name").value.trim();
+    const role = document.getElementById("role").value.trim();
+    const award = document.getElementById("award").value.trim();
+    const message = document.getElementById("message").value.trim();
 
-      if (!name || !role || !award || !message) return alert("All fields required.");
-
-      try {
-        await addDoc(collection(db, "shoutouts"), {
-          name, role, award, message, timestamp: serverTimestamp()
-        });
-        form.reset();
-        loadShoutouts();
-      } catch (err) {
-        console.error("Error writing shoutout:", err);
-        alert("Submission failed. Try again later.");
-      }
-    });
-
-    async function loadShoutouts() {
-      shoutoutsDiv.innerHTML = "";
-      const q = query(collection(db, "shoutouts"), orderBy("timestamp", "desc"));
-      const snapshot = await getDocs(q);
-      snapshot.forEach((doc) => {
-        const data = doc.data();
-        const shout = document.createElement("div");
-        shout.className = "shoutout";
-        shout.innerHTML = `
-          <strong>${data.name}</strong> (${data.role})<br>
-          <em>${data.award}</em><br>
-          ${data.message}<br>
-          <small>${data.timestamp?.toDate().toLocaleString() || "Just now"}</small>
-        `;
-        shoutoutsDiv.appendChild(shout);
-      });
+    if (!name || !role || !award || !message) {
+      alert("All fields are required.");
+      return;
     }
 
-    loadShoutouts();
-  </script>
+    try {
+      await addDoc(collection(db, "shoutouts"), {
+        name, role, award, message,
+        timestamp: serverTimestamp()
+      });
+      alert("Submitted successfully!");
+      document.getElementById("shoutoutForm").reset();
+    } catch (error) {
+      console.error("Submission failed:", error);
+      alert("Submission failed. Please check the console for details.");
+    }
+  });
+</script>
+
 </body>
 </html>
