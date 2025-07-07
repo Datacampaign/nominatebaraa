@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Volunteer Shoutouts | Nominate Baraa</title>
-
   <style>
     body {
       font-family: Arial, Helvetica, sans-serif;
@@ -39,12 +38,26 @@
       padding: 20px;
     }
     .shoutout {
-      background-color: #f5faff;
       border: 1px solid #cce0f5;
       padding: 15px;
       margin-bottom: 20px;
       border-radius: 8px;
       line-height: 1.5;
+    }
+    #overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #002366cc;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      z-index: 999;
     }
   </style>
 </head>
@@ -58,12 +71,12 @@
   </nav>
 
   <main>
-    <h1>🎉 Volunteer Shoutouts</h1>
-    <p style="text-align: center;">Use this form to post a quick update about your progress. We’re all cheering you on!</p>
+    <h1>📣 Live Mission Log</h1>
+    <blockquote id="quote" style="text-align:center; font-style:italic; margin: 1rem 0; color: #444;"></blockquote>
 
     <form id="shoutoutForm" style="max-width:600px; margin: 0 auto;">
       <label>Your Name:</label><br>
-      <input type="text" id="name" required style="width:100%; margin-bottom:10px;"><br>
+      <input type="text" id="name" maxlength="50" required style="width:100%; margin-bottom:10px;"><br>
 
       <label>Your Role:</label><br>
       <select id="role" required style="width:100%; margin-bottom:10px;">
@@ -83,8 +96,10 @@
         <option>Yidan Prize</option>
       </select><br>
 
-      <label>Status Message:</label><br>
+      <label>Status Message (200 chars max):</label><br>
       <textarea id="message" rows="3" maxlength="200" required style="width:100%; margin-bottom:10px;"></textarea><br>
+
+      <label><input type="checkbox" required> Check here if you are human</label><br><br>
 
       <button type="submit" style="background:#002366; color:white; padding:10px 20px; border:none; border-radius:5px;">Submit</button>
     </form>
@@ -96,49 +111,93 @@
     &copy; 2025 NominateBaraa Campaign. Built by global volunteers.
   </footer>
 
-  <!-- Firebase SDKs -->
- <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
-  import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+  <div id="overlay">✨ You did it! Shoutout posted.</div>
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyBtAcvleEv_PFTyq3AaeJzAR52QnGZCuDc",
-    authDomain: "campaign-nominatebaraa.firebaseapp.com",
-    projectId: "campaign-nominatebaraa",
-    storageBucket: "campaign-nominatebaraa.firebasestorage.app",
-    messagingSenderId: "260641916589",
-    appId: "1:260641916589:web:b889857299b7d8f1d2e824"
-  };
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, serverTimestamp, query, orderBy } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+    const firebaseConfig = {
+      apiKey: "AIzaSyBtAcvleEv_PFTyq3AaeJzAR52QnGZCuDc",
+      authDomain: "campaign-nominatebaraa.firebaseapp.com",
+      projectId: "campaign-nominatebaraa",
+      storageBucket: "campaign-nominatebaraa.firebasestorage.app",
+      messagingSenderId: "260641916589",
+      appId: "1:260641916589:web:b889857299b7d8f1d2e824"
+    };
 
-  document.getElementById("shoutoutForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
 
-    const name = document.getElementById("name").value.trim();
-    const role = document.getElementById("role").value.trim();
-    const award = document.getElementById("award").value.trim();
-    const message = document.getElementById("message").value.trim();
+    const quotes = [
+      "You don’t need permission to change the world — just the courage to start.",
+      "Self-taught is self-led. Self-led is unstoppable.",
+      "We rise by lifting others — and building open access to opportunity.",
+      "One action today becomes tomorrow’s nomination."
+    ];
+    let i = 0;
+    setInterval(() => {
+      document.getElementById("quote").textContent = quotes[i % quotes.length];
+      i++;
+    }, 15000);
 
-    if (!name || !role || !award || !message) {
-      alert("All fields are required.");
-      return;
-    }
+    const form = document.getElementById("shoutoutForm");
+    const shoutoutsDiv = document.getElementById("shoutouts");
+    const overlay = document.getElementById("overlay");
 
-    try {
-      await addDoc(collection(db, "shoutouts"), {
-        name, role, award, message,
-        timestamp: serverTimestamp()
+    const roleColors = {
+      "Award Researcher & Eligibility Specialist": "#fef3c7",
+      "Content & Endorsement Writer": "#e0f2fe",
+      "Document & Proof Gatherer": "#fce7f3",
+      "Submission & Compliance Officer": "#e2e8f0",
+      "Community Engagement & Promotion Specialist": "#d1fae5"
+    };
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const role = document.getElementById("role").value.trim();
+      const award = document.getElementById("award").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      if (!name || !role || !award || !message) return alert("All fields required.");
+
+      try {
+        await addDoc(collection(db, "shoutouts"), {
+          name, role, award, message, timestamp: serverTimestamp()
+        });
+        form.reset();
+        overlay.style.display = "flex";
+        setTimeout(() => overlay.style.display = "none", 3000);
+        loadShoutouts();
+      } catch (err) {
+        console.error("Submission failed:", err);
+        alert("Submission failed. Try again later.");
+      }
+    });
+
+    async function loadShoutouts() {
+      shoutoutsDiv.innerHTML = "";
+      const q = query(collection(db, "shoutouts"), orderBy("timestamp", "desc"));
+      const snapshot = await getDocs(q);
+      snapshot.forEach((doc) => {
+        const data = doc.data();
+        const shout = document.createElement("div");
+        shout.className = "shoutout";
+        shout.style.backgroundColor = roleColors[data.role] || "#f5faff";
+        const isFirst = data.message.toLowerCase().includes("first") || data.message.toLowerCase().includes("joined");
+        shout.innerHTML = `
+          ${isFirst ? '<span style="color:#eab308;">🌟 First Update!</span><br>' : ''}
+          <strong>${data.name}</strong> (${data.role})<br>
+          <em>${data.award}</em><br>
+          ${data.message}<br>
+          <small>${data.timestamp?.toDate().toLocaleString() || "Just now"}</small>
+        `;
+        shoutoutsDiv.appendChild(shout);
       });
-      alert("Submitted successfully!");
-      document.getElementById("shoutoutForm").reset();
-    } catch (error) {
-      console.error("Submission failed:", error);
-      alert("Submission failed. Please check the console for details.");
     }
-  });
-</script>
 
+    loadShoutouts();
+  </script>
 </body>
 </html>
