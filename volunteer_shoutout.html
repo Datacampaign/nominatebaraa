@@ -29,8 +29,16 @@
       margin: 0 auto;
       padding: 2rem 1rem;
     }
-    h1, h2 {
+    h1 {
       text-align: center;
+    }
+    #quote {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #e67e22;
+      text-align: center;
+      font-style: italic;
+      margin: 1rem 0;
     }
     #shoutouts {
       max-width: 600px;
@@ -45,175 +53,195 @@
       line-height: 1.5;
     }
     #overlay {
-      display: none;
+      visibility: hidden;
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #002366cc;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 35, 102, 0.8);
       color: white;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      font-size: 1.5rem;
-      z-index: 999;
+      justify-content: center;
+      font-size: 1.8rem;
+      z-index: 9999;
+    }
+    #closeOverlayBtn {
+      margin-top: 25px;
+      padding: 8px 18px;
+      font-size: 1rem;
+      background: #004aad;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-<!-- ===== NAV ===== -->
-  <nav>
-    <a href="https://datacampaign.github.io/nominatebaraa/">Home</a>
-    <a href="https://datacampaign.github.io/nominatebaraa/awards.html">Awards</a>
-    <a href="https://datacampaign.github.io/nominatebaraa/volunteers.html">Volunteers</a>
-    <a href="https://datacampaign.github.io/nominatebaraa/acknowledgement.html">Acknowledgements</a>
-    <a href="https://datacampaign.github.io/nominatebaraa/volunteer_shoutout.html">Volunteer Shoutouts</a>
-    <a href="https://datacampaign.github.io/nominatebaraa/communication.html">Communication</a>
-  </nav>
 
-  <main>
-    <h1>📣 Live Mission Log</h1>
-    <blockquote id="quote" style="text-align:center; font-style:italic; margin: 1rem 0; color: #444;"></blockquote>
+<nav>
+  <a href="https://datacampaign.github.io/nominatebaraa/">Home</a>
+  <a href="https://datacampaign.github.io/nominatebaraa/awards.html">Awards</a>
+  <a href="https://datacampaign.github.io/nominatebaraa/volunteers.html">Volunteers</a>
+  <a href="https://datacampaign.github.io/nominatebaraa/acknowledgement.html">Acknowledgements</a>
+  <a href="https://datacampaign.github.io/nominatebaraa/volunteer_shoutout.html">Volunteer Shoutouts</a>
+  <a href="https://datacampaign.github.io/nominatebaraa/communication.html">Communication</a>
+</nav>
 
-    <form id="shoutoutForm" style="max-width:600px; margin: 0 auto;">
-      <label>Your Name:</label><br>
-      <input type="text" id="name" maxlength="50" required style="width:100%; margin-bottom:10px;"><br>
+<main>
+  <h1>📣 Live Mission Log</h1>
+  <blockquote id="quote"></blockquote>
 
-      <label>Your Role:</label><br>
-      <select id="role" required style="width:100%; margin-bottom:10px;">
-        <option value="">-- Select Role --</option>
-        <option>Award Researcher & Eligibility Specialist</option>
-        <option>Content & Endorsement Writer</option>
-        <option>Document & Proof Gatherer</option>
-        <option>Submission & Compliance Officer</option>
-        <option>Community Engagement & Promotion Specialist</option>
-      </select><br>
+  <form id="shoutoutForm" style="max-width:600px; margin: 0 auto;">
+    <label>Your Name:</label><br>
+    <input type="text" id="name" maxlength="50" required style="width:100%; margin-bottom:10px;"><br>
 
-      <label>Award:</label><br>
-      <select id="award" required style="width:100%; margin-bottom:10px;">
-        <option value="">-- Select Award --</option>
-        <option>Ashoka Fellowship</option>
-        <option>Varkey Foundation</option>
-        <option>Yidan Prize</option>
-      </select><br>
+    <label>Your Role:</label><br>
+    <select id="role" required style="width:100%; margin-bottom:10px;">
+      <option value="">-- Select Role --</option>
+      <option>Award Researcher & Eligibility Specialist</option>
+      <option>Content & Endorsement Writer</option>
+      <option>Document & Proof Gatherer</option>
+      <option>Submission & Compliance Officer</option>
+      <option>Community Engagement & Promotion Specialist</option>
+    </select><br>
 
-      <label>Status Message (200 chars max):</label><br>
-      <textarea id="message" rows="3" maxlength="200" required style="width:100%; margin-bottom:10px;"></textarea><br>
+    <label>Award:</label><br>
+    <select id="award" required style="width:100%; margin-bottom:10px;">
+      <option value="">-- Select Award --</option>
+      <option>Ashoka Fellowship</option>
+      <option>Varkey Foundation</option>
+      <option>Yidan Prize</option>
+    </select><br>
 
-      <label><input type="checkbox" required> Check here if you are human</label><br><br>
+    <label>Status Message (200 chars max):</label><br>
+    <textarea id="message" rows="3" maxlength="200" required style="width:100%; margin-bottom:10px;"></textarea><br>
 
-      <button type="submit" style="background:#002366; color:white; padding:10px 20px; border:none; border-radius:5px;">Submit</button>
-    </form>
+    <label><input type="checkbox" required> Check here if you are human</label><br><br>
 
-    <div id="shoutouts"></div>
-  </main>
+    <button type="submit" style="background:#002366; color:white; padding:10px 20px; border:none; border-radius:5px;">Submit</button>
+  </form>
 
-  <footer style="text-align:center; padding:20px; color:#002366;">
-    &copy; 2025 NominateBaraa Campaign. Built by global volunteers.
-  </footer>
+  <div id="shoutouts"></div>
+</main>
 
-<!-- Success message -->
-<div id="successMessage" style="position: fixed; top: 20px; right: 20px; background: #4CAF50; color: white; padding: 15px 25px; border-radius: 5px; box-shadow: 0 2px 6px rgba(0,0,0,0.2); z-index: 1000; display: flex; align-items: center; cursor: default; visibility: hidden;">
-  <span>✨ You did it! Shout-out posted.</span>
-  <button id="closeSuccessMessage" style="background: transparent; border: none; color: white; font-weight: bold; font-size: 18px; margin-left: 15px; cursor: pointer;">×</button>
+<footer style="text-align:center; padding:20px; color:#002366;">
+  &copy; 2025 NominateBaraa Campaign. Built by global volunteers.
+</footer>
+
+<!-- Overlay -->
+<div id="overlay">
+  ✨ You did it! Shout‑out posted.
+  <button id="closeOverlayBtn">Close</button>
 </div>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
-    import { getFirestore, collection, addDoc, getDocs, serverTimestamp, query, orderBy } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, getDocs, serverTimestamp, query, orderBy } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyBtAcvleEv_PFTyq3AaeJzAR52QnGZCuDc",
-      authDomain: "campaign-nominatebaraa.firebaseapp.com",
-      projectId: "campaign-nominatebaraa",
-      storageBucket: "campaign-nominatebaraa.firebasestorage.app",
-      messagingSenderId: "260641916589",
-      appId: "1:260641916589:web:b889857299b7d8f1d2e824"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
-    const quotes = [
-      "You don’t need permission to change the world — just the courage to start.",
-      "Self-taught is self-led. Self-led is unstoppable.",
-      "We rise by lifting others — and building open access to opportunity.",
-      "One action today becomes tomorrow’s nomination."
-    ];
-    let i = 0;
-    setInterval(() => {
-      document.getElementById("quote").textContent = quotes[i % quotes.length];
-      i++;
-    }, 15000);
-
-    const form = document.getElementById("shoutoutForm");
-    const shoutoutsDiv = document.getElementById("shoutouts");
-    const overlay = document.getElementById("overlay");
-
-    const roleColors = {
-      "Award Researcher & Eligibility Specialist": "#fef3c7",
-      "Content & Endorsement Writer": "#e0f2fe",
-      "Document & Proof Gatherer": "#fce7f3",
-      "Submission & Compliance Officer": "#e2e8f0",
-      "Community Engagement & Promotion Specialist": "#d1fae5"
-    };
-  // Your Firebase imports and config here
-
-  const ConstantSuccessMessage = () => {
-    const cover = document.getElementById("success-cover");
-    if (cover) {
-      cover.style.display = "flex";
-    }
+  const firebaseConfig = {
+    apiKey: "AIzaSyBtAcvleEv_PFTyq3AaeJzAR52QnGZCuDc",
+    authDomain: "campaign-nominatebaraa.firebaseapp.com",
+    projectId: "campaign-nominatebaraa",
+    storageBucket: "campaign-nominatebaraa.firebasestorage.app",
+    messagingSenderId: "260641916589",
+    appId: "1:260641916589:web:b889857299b7d8f1d2e824"
   };
 
-  // Your form submit event listener here, call ConstantSuccessMessage() on success
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const name = document.getElementById("name").value.trim();
-      const role = document.getElementById("role").value.trim();
-      const award = document.getElementById("award").value.trim();
-      const message = document.getElementById("message").value.trim();
+  const form = document.getElementById("shoutoutForm");
+  const shoutoutsDiv = document.getElementById("shoutouts");
+  const overlay = document.getElementById("overlay");
+  const closeBtn = document.getElementById("closeOverlayBtn");
 
-      if (!name || !role || !award || !message) return alert("All fields required.");
+  closeBtn.addEventListener("click", () => {
+    overlay.style.visibility = "hidden";
+  });
 
-      try {
-        await addDoc(collection(db, "shoutouts"), {
-          name, role, award, message, timestamp: serverTimestamp()
-        });
-        form.reset();
-        overlay.style.display = "flex";
-        setTimeout(() => overlay.style.display = "none", 3000);
-        loadShoutouts();
-      } catch (err) {
-        console.error("Submission failed:", err);
-        alert("Submission failed. Try again later.");
-      }
-    });
+  const quotes = [
+    "You don’t need permission to change the world — just the courage to start.",
+    "Self-taught is self-led. Self-led is unstoppable.",
+    "We rise by lifting others — and building open access to opportunity.",
+    "One action today becomes tomorrow’s nomination."
+   "A job rejection today may give you fuel for your future success."
+    "Believe in your ablilities because you showed up, put in the effort and you did the work."
+  ];
+  let i = 0;
+  setInterval(() => {
+    document.getElementById("quote").textContent = quotes[i % quotes.length];
+    i++;
+  }, 15000);
+  document.getElementById("quote").textContent = quotes[0]; // Initial quote
 
-    async function loadShoutouts() {
-      shoutoutsDiv.innerHTML = "";
-      const q = query(collection(db, "shoutouts"), orderBy("timestamp", "desc"));
-      const snapshot = await getDocs(q);
-      snapshot.forEach((doc) => {
-        const data = doc.data();
-        const shout = document.createElement("div");
-        shout.className = "shoutout";
-        shout.style.backgroundColor = roleColors[data.role] || "#f5faff";
-        const isFirst = data.message.toLowerCase().includes("first") || data.message.toLowerCase().includes("joined");
-        shout.innerHTML = `
-          ${isFirst ? '<span style="color:#eab308;">🌟 First Update!</span><br>' : ''}
-          <strong>${data.name}</strong> (${data.role})<br>
-          <em>${data.award}</em><br>
-          ${data.message}<br>
-          <small>${data.timestamp?.toDate().toLocaleString() || "Just now"}</small>
-        `;
-        shoutoutsDiv.appendChild(shout);
-      });
+  const roleColors = {
+    "Award Researcher & Eligibility Specialist": "#fef3c7",
+    "Content & Endorsement Writer": "#e0f2fe",
+    "Document & Proof Gatherer": "#fce7f3",
+    "Submission & Compliance Officer": "#e2e8f0",
+    "Community Engagement & Promotion Specialist": "#d1fae5"
+  };
+
+  async function submitShoutout(data) {
+    await addDoc(collection(db, "shoutouts"), data);
+    overlay.style.visibility = "visible";
+    setTimeout(() => {
+      overlay.style.visibility = "hidden";
+    }, 4000);
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const name = document.getElementById("name").value.trim();
+    const role = document.getElementById("role").value.trim();
+    const award = document.getElementById("award").value.trim();
+    const message = document.getElementById("message").value.trim();
+
+    if (!name || !role || !award || !message) {
+      alert("All fields are required.");
+      return;
     }
 
-    loadShoutouts();
-  </script>
+    try {
+      await submitShoutout({
+        name,
+        role,
+        award,
+        message,
+        timestamp: serverTimestamp()
+      });
+      form.reset();
+      loadShoutouts();
+    } catch (err) {
+      console.error(err);
+      alert("Submission failed—please try again.");
+    }
+  });
+
+  async function loadShoutouts() {
+    shoutoutsDiv.innerHTML = "";
+    const q = query(collection(db, "shoutouts"), orderBy("timestamp", "desc"));
+    const snapshot = await getDocs(q);
+    snapshot.forEach((doc) => {
+      const data = doc.data();
+      const shout = document.createElement("div");
+      shout.className = "shoutout";
+      shout.style.backgroundColor = roleColors[data.role] || "#f5faff";
+      const isFirst = data.message.toLowerCase().includes("first") || data.message.toLowerCase().includes("joined");
+      shout.innerHTML = `
+        ${isFirst ? '<span style="color:#eab308;">🌟 First Update!</span><br>' : ''}
+        <strong>${data.name}</strong> (${data.role})<br>
+        <em>${data.award}</em><br>
+        ${data.message}<br>
+        <small>${data.timestamp?.toDate().toLocaleString() || "Just now"}</small>
+      `;
+      shoutoutsDiv.appendChild(shout);
+    });
+  }
+
+  loadShoutouts();
+</script>
 </body>
 </html>
