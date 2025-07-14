@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Global Teacher Prize – Baraa’s Nomination</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #f9fafb;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      line-height: 1.7;
+    }
+    .container {
+      max-width: 960px;
+      margin: 40px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    }
+    h1, h2, h3 {
+      color: #002366;
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      padding: 12px;
+      background: #e5e7eb;
+      border-radius: 8px;
+      margin-bottom: 30px;
+    }
+    nav button {
+      background: none;
+      border: none;
+      color: #1d4ed8;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    section {
+      display: none;
+    }
+    section.active {
+      display: block;
+    }
+    .note {
+      font-style: italic;
+      color: #666;
+      margin-top: 10px;
+    }
+    .highlight-box {
+      background-color: #eef4fb;
+      padding: 16px;
+      border-left: 4px solid #1d4ed8;
+      margin: 24px 0;
+      border-radius: 8px;
+    }
+    iframe {
+      width: 100%;
+      height: 1600px;
+      border: none;
+      border-radius: 10px;
+    }
+    .progress-bar {
+      background-color: #e5e7eb;
+      border-radius: 8px;
+      overflow: hidden;
+      height: 20px;
+      margin-top: 20px;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      width: 50%;
+      background-color: #1d4ed8;
+      text-align: center;
+      color: white;
+      font-size: 14px;
+      line-height: 20px;
+    }
+  </style>
+  <script>
+    function switchTab(id) {
+      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>Application: Global Teacher Prize</h1>
+
+    <div class="progress-bar" aria-label="Progress 50%">
+      <div class="progress-bar-fill">50% Complete</div>
+    </div>
+
+    <nav>
+      <button onclick="switchTab('instructions')">Instructions</button>
+      <button onclick="switchTab('form')">Form</button>
+      <button onclick="switchTab('criteria')">Award Criteria</button>
+      <button onclick="switchTab('about')">About</button>
+    </nav>
+
+    <section id="instructions" class="active">
+      <h2>📋 Instructions</h2>
+      <p>Baraa, thank you so much for going along with this nomination. I know you didn’t ask for it, but after I discovered your content during a time I felt unsure of my place in data analytics, I gained the confidence, structure, and belief that I could succeed. That kind of impact deserves global recognition.</p>
+      <p>The website and form here are based on the official Varkey Foundation application. I’ve recreated them in a simpler way so you can input everything at your convenience. I’ll then transfer your input into the official nomination form.</p>
+      <p>We're collecting testimonials and endorsements from your students and peers — I’ve asked them to post on their own LinkedIn profiles, and to drop the links for me to compile. I’m also working to get a professional endorsement from someone you’ve worked with at platforms like Udemy or DataCamp. Mohammad one of the volunteers will be reaching out to you. He will be handling curating all the testimonials and professional endorsements and passing them on to me.</p>
+      <p>If you're able to provide any materials (e.g., CV, media mentions, project links), you can upload them through this form. If the Airtable upload option is limited, please feel free to use your own Google Drive or Dropbox and paste the shared link.</p>
+      <p><strong>Preferred deadline to submit this form:</strong> July 28, 2025</p>
+      <p class="note">Final Varkey Foundation deadline: <strong>September 30, 2025</strong></p>
+    </section>
+
+    <section id="form">
+      <h2>📝 Submission Form</h2>
+      <div class="container">
+  <h1>📝 Baraa's Nominee Information Form</h1>
+  <p>Please complete the form below with as much detail as possible. This will support your nomination for the Global Teacher Prize.</p>
+
+  <iframe 
+    class="airtable-embed" 
+    src="https://airtable.com/embed/appUYyRUco2fOLIEh/pagcw4qu2cNk0c9CE/form" 
+    frameborder="0" 
+    onmousewheel="" 
+    width="100%" 
+    height="800" 
+    style="background: transparent; border: 1px solid #ccc;">
+  </iframe>
+
+  <p style="margin-top: 20px;" class="note">
+    If you experience issues with the form, you may open it directly: 
+    <a href="https://airtable.com/appUYyRUco2fOLIEh/pagcw4qu2cNk0c9CE/form" target="_blank">Open in new tab</a>
+  </p>
+</div>
+
+      <p class="note">All your responses will be securely received and compiled for the final submission.</p>
+    </section>
+
+    <section id="criteria">
+      <h2>🎯 Award Criteria</h2>
+      <ul>
+        <li>✔ Effective, scalable instructional practices</li>
+        <li>✔ Innovation tailored to community or context</li>
+        <li>✔ Demonstrable student achievement</li>
+        <li>✔ Community impact beyond the classroom</li>
+        <li>✔ Promotion of global citizenship and values</li>
+        <li>✔ Raising standards and supporting peers</li>
+        <li>✔ Recognition from students, peers, institutions</li>
+      </ul>
+    </section>
+
+    <section id="about">
+      <h2>🌍 About the Varkey Award</h2>
+      <p><a href="https://globalteacherprize.org" target="_blank">Official Global Teacher Prize Website</a></p>
+      <p><a href="https://globalteacherprize.org/nominate" target="_blank">View the Official Nomination Form</a></p>
+    </section>
+  </div>
+</body>
+</html>
