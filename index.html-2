@@ -1,0 +1,285 @@
+import React, { useState, useEffect } from 'react';
+
+// Main App component
+const App = () => {
+  // State to manage the current testimonial index
+  const [currentTestimonialIndex, setCurrentTestimonialIndex] = useState(0);
+
+  // Array of testimonial data
+  // You can add more testimonials here following the same structure
+  // IMPORTANT: For links to be active, ensure linkedinPostUrl is a valid URL.
+  // If it's an empty string or null, the link will be visually disabled.
+  const testimonials = [
+    {
+      snippet: "Baraa's teaching style is incredibly engaging and makes complex data concepts easy to understand. Highly recommend!",
+      giverName: "Ahmad Al-Farsi",
+      countryFlag: "https://placehold.co/24x16/007A3D/FFFFFF?text=OM", // Placeholder for Oman flag
+      linkedinPostUrl: "", // Set to empty to disable for now
+    },
+    {
+      snippet: "I've learned so much from Baraa's courses. His passion for data is infectious, and he truly cares about his students' success.",
+      giverName: "Maria Garcia",
+      countryFlag: "https://placehold.co/24x16/DE2910/FFFFFF?text=MX", // Placeholder for Mexico flag
+      linkedinPostUrl: "", // Set to empty to disable for now
+    },
+    {
+      snippet: "An exceptional educator! Baraa breaks down challenging topics into digestible pieces, making learning enjoyable and effective.",
+      giverName: "Chen Wei",
+      countryFlag: "https://placehold.co/24x16/DE2910/FFDE00?text=CN", // Placeholder for China flag
+      linkedinPostUrl: "", // Set to empty to disable for now
+    },
+    {
+      snippet: "Baraa's insights into data analytics are invaluable. He's a true expert who can communicate complex ideas with clarity.",
+      giverName: "Sophie Dubois",
+      countryFlag: "https://placehold.co/24x16/002654/FFFFFF?text=FR", // Placeholder for France flag
+      linkedinPostUrl: "", // Set to empty to disable for now
+    },
+    {
+      snippet: "The best data instructor I've ever had. Baraa's practical approach and real-world examples are a game-changer.",
+      giverName: "David Lee",
+      countryFlag: "https://placehold.co/24x16/000000/FFFFFF?text=KR", // Placeholder for South Korea flag
+      linkedinPostUrl: "", // Set to empty to disable for now
+    },
+    {
+      snippet: "Highly recommend Baraa for anyone looking to master data skills. His dedication to teaching is truly inspiring.",
+      giverName: "Fatima Zahra",
+      countryFlag: "https://placehold.co/24x16/C1272D/006233?text=MA", // Placeholder for Morocco flag
+      linkedinPostUrl: "", // Set to empty to disable for now
+    },
+    {
+      snippet: "Baraa has a unique ability to simplify complex topics. His courses are a must for aspiring data professionals.",
+      giverName: "Carlos Ramirez",
+      countryFlag: "https://placehold.co/24x16/003893/FCD116?text=CO", // Placeholder for Colombia flag
+      linkedinPostUrl: "", // Set to empty to disable for now
+    },
+    {
+      snippet: "I've seen a significant improvement in my data analysis skills thanks to Baraa's guidance. A truly gifted teacher.",
+      giverName: "Emily White",
+      countryFlag: "https://placehold.co/24x16/00247D/CF142B?text=GB", // Placeholder for UK flag
+      linkedinPostUrl: "", // Set to empty to disable for now
+    },
+    {
+      snippet: "Baraa's teaching is top-notch. He makes learning enjoyable and accessible for everyone, regardless of their background.",
+      giverName: "Hiroshi Tanaka",
+      countryFlag: "https://placehold.co/24x16/BC002D/FFFFFF?text=JP", // Placeholder for Japan flag
+      linkedinPostUrl: "", // Set to empty to disable for now
+    },
+    {
+      snippet: "His explanations are crystal clear, and his patience with students is admirable. Baraa is an outstanding instructor.",
+      giverName: "Priya Sharma",
+      countryFlag: "https://placehold.co/24x16/F46623/138808?text=IN", // Placeholder for India flag
+      linkedinPostUrl: "", // Set to empty to disable for now
+    },
+    {
+      snippet: "Baraa's courses are incredibly practical and relevant to today's data landscape. Highly recommended for career growth.",
+      giverName: "Alexandre Costa",
+      countryFlag: "https://placehold.co/24x16/009739/FEDD00?text=BR", // Placeholder for Brazil flag
+      linkedinPostUrl: "", // Set to empty to disable for now
+    },
+    {
+      snippet: "A phenomenal teacher who inspires confidence. Baraa's commitment to his students' learning is truly remarkable.",
+      giverName: "Jessica Brown",
+      countryFlag: "https://placehold.co/24x16/00247D/FFFFFF?text=US", // Placeholder for USA flag
+      linkedinPostUrl: "", // Set to empty to disable for now
+    },
+    {
+      snippet: "Baraa's ability to simplify complex data science concepts is unmatched. His teaching is truly transformative.",
+      giverName: "Mohammed Ali",
+      countryFlag: "https://placehold.co/24x16/C8102E/FFFFFF?text=AE", // Placeholder for UAE flag
+      linkedinPostUrl: "", // Set to empty to disable for now
+    },
+    {
+      snippet: "I've gained so much practical knowledge from Baraa. He's a mentor who genuinely wants to see you succeed.",
+      giverName: "Chloe Martin",
+      countryFlag: "https://placehold.co/24x16/002395/ED2939?text=CA", // Placeholder for Canada flag
+      linkedinPostUrl: "", // Set to empty to disable for now
+    },
+    {
+      snippet: "Baraa's courses are a game-changer for anyone serious about data. His insights are always relevant and actionable.",
+      giverName: "Lars Jensen",
+      countryFlag: "https://placehold.co/24x16/C60C30/FFFFFF?text=DK", // Placeholder for Denmark flag
+      linkedinPostUrl: "", // Set to empty to disable for now
+    },
+    {
+      snippet: "An incredibly patient and knowledgeable instructor. Baraa makes even the most challenging topics approachable.",
+      giverName: "Sofia Rossi",
+      countryFlag: "https://placehold.co/24x16/008C45/F4F9FF?text=IT", // Placeholder for Italy flag
+      linkedinPostUrl: "", // Set to empty to disable for now
+    },
+    {
+      snippet: "Baraa's teaching methods are innovative and highly effective. He truly empowers his students.",
+      giverName: "Wei Ling",
+      countryFlag: "https://placehold.co/24x16/DE2910/FFDE00?text=TW", // Placeholder for Taiwan flag
+      linkedinPostUrl: "", // Set to empty to disable for now
+    },
+    {
+      snippet: "His passion for data is contagious, and his ability to explain complex concepts simply is a rare gift.",
+      giverName: "Juan Perez",
+      countryFlag: "https://placehold.co/24x16/005A31/CE1126?text=ES", // Placeholder for Spain flag
+      linkedinPostUrl: "", // Set to empty to disable for now
+    },
+  ];
+
+  // Auto-advance testimonial every 7 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTestimonialIndex((prevIndex) =>
+        (prevIndex + 1) % testimonials.length
+      );
+    }, 7000); // 7 seconds
+
+    // Clear the interval when the component unmounts
+    return () => clearInterval(timer);
+  }, [testimonials.length]);
+
+  // Handle previous testimonial button click
+  const handlePrevious = () => {
+    setCurrentTestimonialIndex((prevIndex) =>
+      prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
+    );
+  };
+
+  // Handle next testimonial button click
+  const handleNext = () => {
+    setCurrentTestimonialIndex((prevIndex) =>
+      (prevIndex + 1) % testimonials.length
+    );
+  };
+
+  // Current testimonial being displayed
+  const currentTestimonial = testimonials[currentTestimonialIndex];
+
+  return (
+    <div className="min-h-screen bg-gray-100 font-sans flex flex-col items-center py-8">
+      {/* Tailwind CSS CDN */}
+      <script src="https://cdn.tailwindcss.com"></script>
+      {/* Font Awesome for LinkedIn and YouTube icons */}
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+      {/* Hero Banner Section */}
+      <div className="relative w-full max-w-6xl mx-auto rounded-xl overflow-hidden shadow-lg mb-8 bg-white">
+        <img
+          src="https://raw.githubusercontent.com/Datacampaign/nominatebaraa/refs/heads/main/baraa_img1.png" // Updated banner image URL
+          alt="Baraa Campaign Banner"
+          className="w-full h-auto object-cover transform transition-transform duration-1000 ease-in-out hover:scale-105"
+          // Fallback if image fails to load
+          onError={(e) => {
+            e.target.onerror = null; // Prevent infinite loop
+            e.target.src = "https://placehold.co/1200x400/CCCCCC/333333?text=Campaign+Banner+Image";
+          }}
+        />
+        {/* Nominee Details Overlay - Moved to top-left */}
+        <div className="absolute top-4 left-4 bg-white bg-opacity-90 p-4 rounded-lg shadow-md max-w-xs text-left">
+          <h2 className="text-2xl font-bold text-gray-800 mb-2">Baraa Katib Salkini</h2>
+          <p className="text-gray-600 text-sm mb-3">
+            Passionate Data Educator & Tech Enthusiast, empowering learners with practical skills in SQL, Python, Excel, and more.
+          </p>
+          <a
+            href="https://www.linkedin.com/in/baraa-katib-salkini/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 hover:text-blue-800 transition-colors duration-200 flex items-center justify-start"
+          >
+            <i className="fab fa-linkedin text-xl mr-2"></i>
+            <span className="text-sm">View LinkedIn Profile</span>
+          </a>
+        </div>
+      </div>
+
+      {/* Testimonial Display Section */}
+      <div className="w-full max-w-2xl bg-white p-8 rounded-xl shadow-lg flex flex-col items-center relative">
+        {/* Nominee details at the top of the testimonial box */}
+        <div className="w-full flex items-center justify-between mb-6 pb-4 border-b border-gray-200">
+          <div className="flex items-center">
+            {/* YouTube Play Icon */}
+            <i className="fab fa-youtube text-red-600 text-4xl mr-3"></i>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-800">
+                <a
+                  href="https://www.youtube.com/@DataWithBaraa"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-red-600 hover:text-red-700 transition-colors duration-200"
+                >
+                  Data With Baraa
+                </a>
+                <span className="text-gray-600 ml-2">What Learners are saying.</span>
+              </h3>
+            </div>
+          </div>
+        </div>
+
+        {/* Testimonial Content */}
+        {currentTestimonial && (
+          <div className="text-center mb-6 px-4">
+            <p className="text-gray-700 text-lg italic leading-relaxed mb-4">
+              "{currentTestimonial.snippet}"
+            </p>
+            <div className="flex items-center justify-center text-gray-600 text-base font-medium">
+              <img
+                src={currentTestimonial.countryFlag}
+                alt="Country Flag"
+                className="w-6 h-4 rounded mr-2 shadow-sm"
+              />
+              <span>- {currentTestimonial.giverName}</span>
+              {/* Conditional rendering for LinkedIn link: active only if URL is provided */}
+              {currentTestimonial.linkedinPostUrl ? (
+                <a
+                  href={currentTestimonial.linkedinPostUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="ml-3 text-blue-500 hover:text-blue-700 transition-colors duration-200"
+                  title="View LinkedIn Post"
+                >
+                  <i className="fab fa-linkedin text-xl"></i>
+                </a>
+              ) : (
+                <span
+                  className="ml-3 text-gray-400 cursor-not-allowed"
+                  title="Link not active yet"
+                >
+                  <i className="fab fa-linkedin text-xl"></i>
+                </span>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Navigation and Counter */}
+        <div className="flex items-center justify-between w-full mt-4 pt-4 border-t border-gray-200">
+          <button
+            onClick={handlePrevious}
+            className="px-6 py-2 bg-blue-500 text-white rounded-full shadow-md hover:bg-blue-600 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+          >
+            Previous
+          </button>
+
+          <span className="text-gray-600 text-lg font-semibold">
+            {currentTestimonialIndex + 1} of {testimonials.length}
+          </span>
+
+          <button
+            onClick={handleNext}
+            className="px-6 py-2 bg-blue-500 text-white rounded-full shadow-md hover:bg-blue-600 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+
+      {/* Call to Action for Campaign Page */}
+      <div className="mt-8">
+        <a
+          href="https://datacampaign.github.io/nominatebaraa/" // Replace with your actual campaign page URL
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block px-8 py-4 bg-blue-800 text-white text-xl font-bold rounded-full shadow-lg hover:bg-blue-900 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-700 focus:ring-opacity-75"
+        >
+          View Full Campaign Page
+        </a>
+      </div>
+    </div>
+  );
+};
+
+export default App;
