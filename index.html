@@ -107,9 +107,9 @@
         </a>
     </div>
 
-  <script>
-    // Array of testimonial data
-    const testimonials = [
+ <script>
+    // Array of all testimonial data
+    const allTestimonials = [
         {
             snippet: "His way of teaching is not just informative — it’s transformational. Baraa’s content gave me clarity, confidence, and a real sense of progress in my career journey.",
             giverName: "Abdul Mossawer",
@@ -119,7 +119,7 @@
         {
             snippet: "Dear Baraa, your YouTube Tableau tutorial helped me learn the tool in 3 days and nailed an interview.",
             giverName: "Unknown",
-            countryFlag: "",
+            countryFlag: "🌏",
             linkedinPostUrl: "https://www.linkedin.com/posts/baraa-khatib-salkini_ok-what-an-amazing-message-to-wrap-up-the-activity-7364686200516820994-KPUL?utm_source=share&utm_medium=member_desktop&rcm=ACoAABgSpUYBsp7Lxx-Dh1B_mHIvkHfvUxxQaQY",
         },
         {
@@ -304,65 +304,95 @@
         },
     ];
 
-    let currentTestimonialIndex = 0;
+    const realTestimonials = allTestimonials.slice(0, 7);
     const testimonialContentDiv = document.getElementById('testimonial-content');
     const testimonialCounterSpan = document.getElementById('testimonial-counter');
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
+    const globeIconUrl = 'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.7.0/flags/4x3/un.svg'; // Using the UN flag as a globe
+
+    let currentTestimonialIndex = 0;
+    let testimonialsToDisplay = realTestimonials;
 
     function displayTestimonial() {
-        const testimonial = testimonials[currentTestimonialIndex];
-        if (!testimonial) return;
+        if (currentTestimonialIndex < realTestimonials.length) {
+            const testimonial = testimonialsToDisplay [currentTestimonialIndex];
+            if (!testimonial) return;
 
-        let linkedinLinkHtml = '';
-        if (testimonial.linkedinPostUrl) {
-            linkedinLinkHtml = `
-                <a
-                    href="${testimonial.linkedinPostUrl}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="ml-3 text-blue-500 hover:text-blue-700 transition-colors duration-200"
-                    title="View LinkedIn Post"
-                >
-                    <i class="fab fa-linkedin text-xl"></i>
-                </a>
+            let linkedinLinkHtml = '';
+            if (testimonial.linkedinPostUrl) {
+                linkedinLinkHtml = `
+                    <a
+                        href="${testimonial.linkedinPostUrl}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="ml-3 text-blue-500 hover:text-blue-700 transition-colors duration-200"
+                        title="View LinkedIn Post"
+                    >
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                `;
+            } else {
+                linkedinLinkHtml = `
+                    <span
+                        class="ml-3 text-gray-400 cursor-not-allowed"
+                        title="Link not active yet"
+                    >
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </span>
+                `;
+            }
+
+            const flagSrc = testimonial.countryFlag || globeIconUrl;
+            const flagAlt = testimonial.countryFlag ? 'Country Flag' : 'Globe Icon';
+
+            testimonialContentDiv.innerHTML = `
+                <p class="text-gray-700 text-xl italic leading-relaxed mb-4">
+                    "${testimonial.snippet}"
+                </p>
+                <div class="flex items-center justify-center text-gray-600 text-lg font-medium">
+                    <img
+                        src="${flagSrc}"
+                        alt="${flagAlt}"
+                        class="w-12 h-9 rounded mr-4 shadow-md border-2 border-gray-400"
+                    />
+                    <span>- ${testimonial.giverName}</span>
+                    ${linkedinLinkHtml}
+                </div>
             `;
+            testimonialCounterSpan.textContent = `${currentTestimonialIndex + 1} of ${realTestimonials.length}`;
+            testimonialsToDisplay = realTestimonials; // Ensure we are navigating through real testimonials
         } else {
-            linkedinLinkHtml = `
-                <span
-                    class="ml-3 text-gray-400 cursor-not-allowed"
-                    title="Link not active yet"
-                >
-                    <i class="fab fa-linkedin text-xl"></i>
-                </span>
+            testimonialContentDiv.innerHTML = `
+                <p class="text-gray-700 text-2xl text-center font-semibold text-gray-600 mb-4">
+                    More inspiring testimonials coming soon!
+                </p>
             `;
+            testimonialCounterSpan.textContent = 'Coming Soon';
+            testimonialsToDisplay = [{ snippet: 'More inspiring testimonials coming soon!', giverName: '' }]; // To prevent errors in navigation
         }
 
-        testimonialContentDiv.innerHTML = `
-            <p class="text-gray-700 text-xl italic leading-relaxed mb-4">
-                "${testimonial.snippet}"
-            </p>
-            <div class="flex items-center justify-center text-gray-600 text-lg font-medium">
-                <img
-                    src="${testimonial.countryFlag}"
-                    alt="Country Flag"
-                    class="w-12 h-9 rounded mr-4 shadow-md border-2 border-gray-400"
-                />
-                <span>- ${testimonial.giverName}</span>
-                ${linkedinLinkHtml}
-            </div>
-        `;
-        testimonialCounterSpan.textContent = `${currentTestimonialIndex + 1} of ${testimonials.length}`;
+        // Update button states based on whether we are showing real testimonials or the "Coming Soon" message
+        prevBtn.disabled = testimonialsToDisplay.length <= 1 && currentTestimonialIndex === 0;
+        nextBtn.disabled = testimonialsToDisplay.length <= 1 && currentTestimonialIndex === 0;
     }
 
     function handlePrevious() {
-        currentTestimonialIndex = (currentTestimonialIndex === 0) ? testimonials.length - 1 : currentTestimonialIndex - 1;
+        if (currentTestimonialIndex > 0) {
+            currentTestimonialIndex--;
+        } else if (realTestimonials.length > 0) {
+            currentTestimonialIndex = realTestimonials.length -1;
+        }
         displayTestimonial();
         startAutoAdvance();
     }
 
     function handleNext() {
-        currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonials.length;
+        if (currentTestimonialIndex < realTestimonials.length - 1) {
+            currentTestimonialIndex++;
+        } else {
+            currentTestimonialIndex = realTestimonials.length; // Move to the "Coming Soon" state
+        }
         displayTestimonial();
         startAutoAdvance();
     }
@@ -371,11 +401,13 @@
     prevBtn.addEventListener('click', handlePrevious);
     nextBtn.addEventListener('click', handleNext);
 
-    // Auto-advance testimonial every 7 seconds
+    // Auto-advance testimonial every 7 seconds (only for real testimonials)
     let autoAdvanceTimer;
     function startAutoAdvance() {
-        if (autoAdvanceTimer) clearInterval(autoAdvanceTimer); // Clear any existing timer
-        autoAdvanceTimer = setInterval(handleNext, 7000); // 7 seconds
+        clearInterval(autoAdvanceTimer);
+        if (currentTestimonialIndex < realTestimonials.length && realTestimonials.length > 1) {
+            autoAdvanceTimer = setInterval(handleNext, 7000);
+        }
     }
 
     // Initialize display and start auto-advance on page load
