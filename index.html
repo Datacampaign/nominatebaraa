@@ -107,291 +107,282 @@
         </a>
     </div>
 
-    <script>
-        // Array of testimonial data
-        const testimonials = [
-            {
-                snippet: "His way of teaching is not just informative — it’s transformational. Baraa’s content gave me clarity, confidence, and a real sense of progress in my career journey.",
-                giverName: "Abdul Mossawer",
-                countryFlag: "https://raw.githubusercontent.com/MeryemCiftciAly/assets/refs/heads/main/india.png", // Oman flag
-                linkedinPostUrl: "https://www.linkedin.com/posts/abdulmossawerdev_nominatebaraa-activity-7351898741940891648-GSzg?utm_source=share&utm_medium=member_desktop&rcm=ACoAABgSpUYBsp7Lxx-Dh1B_mHIvkHfvUxxQaQY",
-            },
-            {
-                snippet: "Dear Baraa, your YouTube Tableau tutorial helped me learn the tool in 3 days and nailed an interview.",
-                giverName: "Unknown",
-                countryFlag: "", // unknown
-                linkedinPostUrl: "https://www.linkedin.com/posts/baraa-khatib-salkini_ok-what-an-amazing-message-to-wrap-up-the-activity-7364686200516820994-KPUL?utm_source=share&utm_medium=member_desktop&rcm=ACoAABgSpUYBsp7Lxx-Dh1B_mHIvkHfvUxxQaQY",
-            },
-            {
-                snippet: "I spent about an hour watching content and then doing hands-on practice about 2 hours— and honestly, it went better than I expected!",
-                giverName: "Nazar Ali",
-                countryFlag: "https://raw.githubusercontent.com/MeryemCiftciAly/assets/refs/heads/main/india.png", // India flag
-                linkedinPostUrl: "https://www.linkedin.com/posts/nazar-ali-%F0%9F%8E%AE-%E2%9A%94%EF%B8%8F-a79bb9229_sql-learningjourney-dataengineering-activity-7363597433043369985-Vw_L?utm_source=share&utm_medium=member_desktop&rcm=ACoAABgSpUYBsp7Lxx-Dh1B_mHIvkHfvUxxQaQY",
-            },
-            {
-                snippet: "I found his YouTube channel while trying to build a Tableau dashboard, and honestly? His video changed everything for me.",
-                giverName: "Jennifer Joseph",
-                countryFlag: "https://raw.githubusercontent.com/MeryemCiftciAly/assets/refs/heads/main/nigeria.png", // Nigeria flag
-                linkedinPostUrl: "https://www.linkedin.com/posts/jennifer-data_nominatebaraa-datawithbaraa-sqllearning-activity-7351853577037926400-VbBW?utm_source=share&utm_medium=member_desktop&rcm=ACoAABgSpUYBsp7Lxx-Dh1B_mHIvkHfvUxxQaQY",
-            },
-            {
-                snippet: "Not long ago, I found myself searching YouTube for a decent tutorial on Tableau. Something practical. Something clear. I didn’t want fluff—I wanted a teacher.",
-                giverName: "TUBA TASNEEM",
-                countryFlag: "https://raw.githubusercontent.com/MeryemCiftciAly/assets/refs/heads/main/india.png", // India flag
-                linkedinPostUrl: "https://www.linkedin.com/posts/tubatasneemofficial_nominatebaraa-nominatebaraa-datawithbaraa-activity-7351878998441816064-zGXQ?utm_source=share&utm_medium=member_desktop&rcm=ACoAABgSpUYBsp7Lxx-Dh1B_mHIvkHfvUxxQaQY",
-            },
-            {
-                snippet: "When I first started learning SQL, I was jumping from one YouTube tutorial to another. Honestly, nothing really clicked. Most videos felt repetitive, incomplete, or just not worth my time. Then one day, YouTube recommended me a video by Baraa Khatib Salkini.",
-                giverName: "Muhammad Salman",
-                countryFlag: "https://raw.githubusercontent.com/MeryemCiftciAly/assets/refs/heads/main/pakistan.png", // Pakistan flag
-                linkedinPostUrl: "https://www.linkedin.com/posts/m-salman-cs_nominatebaraa-datawithbaraa-sql-activity-7351926740815863808-9SkH?utm_source=share&utm_medium=member_desktop&rcm=ACoAABgSpUYBsp7Lxx-Dh1B_mHIvkHfvUxxQaQY",
-            },
-            {
-                snippet: "The way he teaches is truly captivating. He makes complex concepts feel approachable. I decided to start over — this time learning from him — and I never imagined I would grow to love working with data so much.",
-                giverName: "Gervásio Mavungo
- ",
-                countryFlag: "https://raw.githubusercontent.com/MeryemCiftciAly/assets/refs/heads/main/angola.png", // Colombia flag
-                linkedinPostUrl: "https://www.linkedin.com/posts/gerv%C3%A1sio-mavungo-686276289_nominatebaraa-dataanalytics-powerbi-activity-7352396077565640704-gpNl?utm_source=share&utm_medium=member_desktop&rcm=ACoAABgSpUYBsp7Lxx-Dh1B_mHIvkHfvUxxQaQY",
-            },
-            {
-                snippet: "I've seen a significant improvement in my data analysis skills thanks to Baraa's guidance. A truly gifted teacher.",
-                giverName: "Emily White",
-                countryFlag: "https://placehold.co/24x16/00247D/CF142B?text=GB", // UK flag
-                linkedinPostUrl: "",
-            },
-            {
-                snippet: "Baraa's teaching is top-notch. He makes learning enjoyable and accessible for everyone, regardless of their background.",
-                giverName: "Hiroshi Tanaka",
-                countryFlag: "https://placehold.co/24x16/BC002D/FFFFFF?text=JP", // Japan flag
-                linkedinPostUrl: "",
-            },
-            {
-                snippet: "His explanations are crystal clear, and his patience with students is admirable. Baraa is an outstanding instructor.",
-                giverName: "Priya Sharma",
-                countryFlag: "https://placehold.co/24x16/F46623/138808?text=IN", // India flag
-                linkedinPostUrl: "",
-            },
-            {
-                snippet: "Baraa's courses are incredibly practical and relevant to today's data landscape. Highly recommended for career growth.",
-                giverName: "Alexandre Costa",
-                countryFlag: "https://placehold.co/24x16/009739/FEDD00?text=BR", // Brazil flag
-                linkedinPostUrl: "",
-            },
-            {
-                snippet: "A phenomenal teacher who inspires confidence. Baraa's commitment to his students' learning is truly remarkable.",
-                giverName: "Jessica Brown",
-                countryFlag: "https://placehold.co/24x16/00247D/FFFFFF?text=US", // USA flag
-                linkedinPostUrl: "",
-            },
-            {
-                snippet: "Baraa's ability to simplify complex data science concepts is unmatched. His teaching is truly transformative.",
-                giverName: "Mohammed Ali",
-                countryFlag: "https://placehold.co/24x16/C8102E/FFFFFF?text=AE", // UAE flag
-                linkedinPostUrl: "",
-            },
-            {
-                snippet: "I've gained so much practical knowledge from Baraa. He's a mentor who genuinely wants to see you succeed.",
-                giverName: "Chloe Martin",
-                countryFlag: "https://placehold.co/24x16/002395/ED2939?text=CA", // Canada flag
-                linkedinPostUrl: "",
-            },
-            {
-                snippet: "Baraa's courses are a game-changer for anyone serious about data. His insights are always relevant and actionable.",
-                giverName: "Lars Jensen",
-                countryFlag: "https://placehold.co/24x16/C60C30/FFFFFF?text=DK", // Denmark flag
-                linkedinPostUrl: "",
-            },
-            {
-                snippet: "An incredibly patient and knowledgeable instructor. Baraa makes even the most challenging topics approachable.",
-                giverName: "Sofia Rossi",
-                countryFlag: "https://placehold.co/24x16/008C45/F4F9FF?text=IT", // Italy flag
-                linkedinPostUrl: "",
-            },
-            {
-                snippet: "Baraa's teaching methods are innovative and highly effective. He truly empowers his students.",
-                giverName: "Wei Ling",
-                countryFlag: "https://placehold.co/24x16/DE2910/000000?text=SG", // Singapore flag
-                linkedinPostUrl: "",
-            },
-            {
-                snippet: "His passion for data is contagious, and his ability to explain complex concepts simply is a rare gift.",
-                giverName: "Juan Perez",
-                countryFlag: "https://placehold.co/24x16/005A31/CE1126?text=ES", // Spain flag
-                linkedinPostUrl: "",
-            },
-            {
-                snippet: "I've gained a solid foundation in data analysis thanks to Baraa's clear and concise lessons.",
-                giverName: "Nadia Popova",
-                countryFlag: "https://placehold.co/24x16/0057B7/FFD700?text=UA", // Ukraine flag
-                linkedinPostUrl: "",
-            },
-            {
-                snippet: "Baraa's courses are both challenging and rewarding. I'm now confident in my ability to handle complex data sets.",
-                giverName: "Kai Schmidt",
-                countryFlag: "https://placehold.co/24x16/000000/DD0000?text=DE", // Germany flag
-                linkedinPostUrl: "",
-            },
-            {
-                snippet: "A true professional and a fantastic teacher. Baraa's impact on my career has been immense.",
-                giverName: "Layla Al-Mansoori",
-                countryFlag: "https://placehold.co/24x16/009739/FFFFFF?text=SA", // Saudi Arabia flag
-                linkedinPostUrl: "",
-            },
-            {
-                snippet: "Baraa's passion for data science shines through in every lesson. He's a great role model.",
-                giverName: "Ethan Jones",
-                countryFlag: "https://placehold.co/24x16/000000/FFFFFF?text=AU", // Australia flag
-                linkedinPostUrl: "",
-            },
-            {
-                snippet: "His guidance has been instrumental in my professional development. Thank you, Baraa!",
-                giverName: "Olga Petrova",
-                countryFlag: "https://placehold.co/24x16/D52B1E/FFFFFF?text=RU", // Russia flag
-                linkedinPostUrl: "",
-            },
-            {
-                snippet: "I highly value Baraa's teaching. His ability to explain difficult concepts is a gift.",
-                giverName: "Ahmed Hassan",
-                countryFlag: "https://placehold.co/24x16/C8102E/007A4D?text=EG", // Egypt flag
-                linkedinPostUrl: "",
-            },
-            {
-                snippet: "Baraa's real-world examples make all the difference. I feel prepared for any data challenge now.",
-                giverName: "Mia Chen",
-                countryFlag: "https://placehold.co/24x16/DE2910/000000?text=SG", // Singapore flag
-                linkedinPostUrl: "",
-            },
-            {
-                snippet: "His courses are engaging, practical, and highly informative. I couldn't have asked for a better instructor.",
-                giverName: "Lucas Ferreira",
-                countryFlag: "https://placehold.co/24x16/009739/FEDD00?text=PT", // Portugal flag
-                linkedinPostUrl: "",
-            },
-            {
-                snippet: "Baraa has a unique way of teaching that makes even the most difficult concepts seem simple.",
-                giverName: "Anna Novak",
-                countryFlag: "https://placehold.co/24x16/FFC72C/FFFFFF?text=CZ", // Czech Republic flag
-                linkedinPostUrl: "",
-            },
-            {
-                snippet: "An inspiring and talented educator. Baraa's dedication to his students is truly impressive.",
-                giverName: "Omar Bakri",
-                countryFlag: "https://placehold.co/24x16/DE2910/FFFFFF?text=SY", // Syria flag
-                linkedinPostUrl: "",
-            },
-            {
-                snippet: "I’ve learned a lot from Baraa. He is a phenomenal teacher who makes learning fun.",
-                giverName: "Isabella Martinez",
-                countryFlag: "https://placehold.co/24x16/009739/FEDD00?text=AR", // Argentina flag
-                linkedinPostUrl: "",
-            },
-            {
-                snippet: "Baraa's teaching has been a guiding light in my data science journey. A truly exceptional mentor.",
-                giverName: "Yusuf Khan",
-                countryFlag: "https://placehold.co/24x16/007A3D/FFFFFF?text=PK", // Pakistan flag
-                linkedinPostUrl: "",
-            },
-            {
-                snippet: "The best data instructor I've had. He has a gift for making everything click.",
-                giverName: "Elena Rodriguez",
-                countryFlag: "https://placehold.co/24x16/006325/D21034?text=MX", // Mexico flag
-                linkedinPostUrl: "",
-            },
-            {
-                snippet: "Baraa's commitment to teaching and student success is inspiring. He's a truly dedicated educator.",
-                giverName: "Kenji Sato",
-                countryFlag: "https://placehold.co/24x16/BC002D/FFFFFF?text=JP", // Japan flag
-                linkedinPostUrl: "",
-            },
-        ];
+  <script>
+    // Array of testimonial data
+    const testimonials = [
+        {
+            snippet: "His way of teaching is not just informative — it’s transformational. Baraa’s content gave me clarity, confidence, and a real sense of progress in my career journey.",
+            giverName: "Abdul Mossawer",
+            countryFlag: "https://raw.githubusercontent.com/MeryemCiftciAly/assets/refs/heads/main/india.png",
+            linkedinPostUrl: "https://www.linkedin.com/posts/abdulmossawerdev_nominatebaraa-activity-7351898741940891648-GSzg?utm_source=share&utm_medium=member_desktop&rcm=ACoAABgSpUYBsp7Lxx-Dh1B_mHIvkHfvUxxQaQY",
+        },
+        {
+            snippet: "Dear Baraa, your YouTube Tableau tutorial helped me learn the tool in 3 days and nailed an interview.",
+            giverName: "Unknown",
+            countryFlag: "",
+            linkedinPostUrl: "https://www.linkedin.com/posts/baraa-khatib-salkini_ok-what-an-amazing-message-to-wrap-up-the-activity-7364686200516820994-KPUL?utm_source=share&utm_medium=member_desktop&rcm=ACoAABgSpUYBsp7Lxx-Dh1B_mHIvkHfvUxxQaQY",
+        },
+        {
+            snippet: "I spent about an hour watching content and then doing hands-on practice about 2 hours— and honestly, it went better than I expected!",
+            giverName: "Nazar Ali",
+            countryFlag: "https://raw.githubusercontent.com/MeryemCiftciAly/assets/refs/heads/main/india.png",
+            linkedinPostUrl: "https://www.linkedin.com/posts/nazar-ali-%F0%9F%8E%AE-%E2%9A%94%EF%B8%8F-a79bb9229_sql-learningjourney-dataengineering-activity-7363597433043369985-Vw_L?utm_source=share&utm_medium=member_desktop&rcm=ACoAABgSpUYBsp7Lxx-Dh1B_mHIvkHfvUxxQaQY",
+        },
+        {
+            snippet: "I found his YouTube channel while trying to build a Tableau dashboard, and honestly? His video changed everything for me.",
+            giverName: "Jennifer Joseph",
+            countryFlag: "https://raw.githubusercontent.com/MeryemCiftciAly/assets/refs/heads/main/nigeria.png",
+            linkedinPostUrl: "https://www.linkedin.com/posts/jennifer-data_nominatebaraa-datawithbaraa-sqllearning-activity-7351853577037926400-VbBW?utm_source=share&utm_medium=member_desktop&rcm=ACoAABgSpUYBsp7Lxx-Dh1B_mHIvkHfvUxxQaQY",
+        },
+        {
+            snippet: "Not long ago, I found myself searching YouTube for a decent tutorial on Tableau. Something practical. Something clear. I didn’t want fluff—I wanted a teacher.",
+            giverName: "TUBA TASNEEM",
+            countryFlag: "https://raw.githubusercontent.com/MeryemCiftciAly/assets/refs/heads/main/india.png",
+            linkedinPostUrl: "https://www.linkedin.com/posts/tubatasneemofficial_nominatebaraa-nominatebaraa-datawithbaraa-activity-7351878998441816064-zGXQ?utm_source=share&utm_medium=member_desktop&rcm=ACoAABgSpUYBsp7Lxx-Dh1B_mHIvkHfvUxxQaQY",
+        },
+        {
+            snippet: "When I first started learning SQL, I was jumping from one YouTube tutorial to another. Honestly, nothing really clicked. Most videos felt repetitive, incomplete, or just not worth my time. Then one day, YouTube recommended me a video by Baraa Khatib Salkini.",
+            giverName: "Muhammad Salman",
+            countryFlag: "https://raw.githubusercontent.com/MeryemCiftciAly/assets/refs/heads/main/pakistan.png",
+            linkedinPostUrl: "https://www.linkedin.com/posts/m-salman-cs_nominatebaraa-datawithbaraa-sql-activity-7351926740815863808-9SkH?utm_source=share&utm_medium=member_desktop&rcm=ACoAABgSpUYBsp7Lxx-Dh1B_mHIvkHfvUxxQaQY",
+        },
+        {
+            snippet: "The way he teaches is truly captivating. He makes complex concepts feel approachable. I decided to start over — this time learning from him — and I never imagined I would grow to love working with data so much.",
+            giverName: "Gervásio Mavungo",
+            countryFlag: "https://raw.githubusercontent.com/MeryemCiftciAly/assets/refs/heads/main/angola.png",
+            linkedinPostUrl: "https://www.linkedin.com/posts/gerv%C3%A1sio-mavungo-686276289_nominatebaraa-dataanalytics-powerbi-activity-7352396077565640704-gpNl?utm_source=share&utm_medium=member_desktop&rcm=ACoAABgSpUYBsp7Lxx-Dh1B_mHIvkHfvUxxQaQY",
+        },
+        {
+            snippet: "I've seen a significant improvement in my data analysis skills thanks to Baraa's guidance. A truly gifted teacher.",
+            giverName: "Emily White",
+            countryFlag: "https://placehold.co/24x16/00247D/CF142B?text=GB",
+            linkedinPostUrl: "",
+        },
+        {
+            snippet: "Baraa's teaching is top-notch. He makes learning enjoyable and accessible for everyone, regardless of their background.",
+            giverName: "Hiroshi Tanaka",
+            countryFlag: "https://placehold.co/24x16/BC002D/FFFFFF?text=JP",
+            linkedinPostUrl: "",
+        },
+        {
+            snippet: "His explanations are crystal clear, and his patience with students is admirable. Baraa is an outstanding instructor.",
+            giverName: "Priya Sharma",
+            countryFlag: "https://placehold.co/24x16/F46623/138808?text=IN",
+            linkedinPostUrl: "",
+        },
+        {
+            snippet: "Baraa's courses are incredibly practical and relevant to today's data landscape. Highly recommended for career growth.",
+            giverName: "Alexandre Costa",
+            countryFlag: "https://placehold.co/24x16/009739/FEDD00?text=BR",
+            linkedinPostUrl: "",
+        },
+        {
+            snippet: "A phenomenal teacher who inspires confidence. Baraa's commitment to his students' learning is truly remarkable.",
+            giverName: "Jessica Brown",
+            countryFlag: "https://placehold.co/24x16/00247D/FFFFFF?text=US",
+            linkedinPostUrl: "",
+        },
+        {
+            snippet: "Baraa's ability to simplify complex data science concepts is unmatched. His teaching is truly transformative.",
+            giverName: "Mohammed Ali",
+            countryFlag: "https://placehold.co/24x16/C8102E/FFFFFF?text=AE",
+            linkedinPostUrl: "",
+        },
+        {
+            snippet: "I've gained so much practical knowledge from Baraa. He's a mentor who genuinely wants to see you succeed.",
+            giverName: "Chloe Martin",
+            countryFlag: "https://placehold.co/24x16/002395/ED2939?text=CA",
+            linkedinPostUrl: "",
+        },
+        {
+            snippet: "Baraa's courses are a game-changer for anyone serious about data. His insights are always relevant and actionable.",
+            giverName: "Lars Jensen",
+            countryFlag: "https://placehold.co/24x16/C60C30/FFFFFF?text=DK",
+            linkedinPostUrl: "",
+        },
+        {
+            snippet: "An incredibly patient and knowledgeable instructor. Baraa makes even the most challenging topics approachable.",
+            giverName: "Sofia Rossi",
+            countryFlag: "https://placehold.co/24x16/008C45/F4F9FF?text=IT",
+            linkedinPostUrl: "",
+        },
+        {
+            snippet: "Baraa's teaching methods are innovative and highly effective. He truly empowers his students.",
+            giverName: "Wei Ling",
+            countryFlag: "https://placehold.co/24x16/DE2910/000000?text=SG",
+            linkedinPostUrl: "",
+        },
+        {
+            snippet: "His passion for data is contagious, and his ability to explain complex concepts simply is a rare gift.",
+            giverName: "Juan Perez",
+            countryFlag: "https://placehold.co/24x16/005A31/CE1126?text=ES",
+            linkedinPostUrl: "",
+        },
+        {
+            snippet: "I've gained a solid foundation in data analysis thanks to Baraa's clear and concise lessons.",
+            giverName: "Nadia Popova",
+            countryFlag: "https://placehold.co/24x16/0057B7/FFD700?text=UA",
+            linkedinPostUrl: "",
+        },
+        {
+            snippet: "Baraa's courses are both challenging and rewarding. I'm now confident in my ability to handle complex data sets.",
+            giverName: "Kai Schmidt",
+            countryFlag: "https://placehold.co/24x16/000000/DD0000?text=DE",
+            linkedinPostUrl: "",
+        },
+        {
+            snippet: "A true professional and a fantastic teacher. Baraa's impact on my career has been immense.",
+            giverName: "Layla Al-Mansoori",
+            countryFlag: "https://placehold.co/24x16/009739/FFFFFF?text=SA",
+            linkedinPostUrl: "",
+        },
+        {
+            snippet: "Baraa's passion for data science shines through in every lesson. He's a great role model.",
+            giverName: "Ethan Jones",
+            countryFlag: "https://placehold.co/24x16/000000/FFFFFF?text=AU",
+            linkedinPostUrl: "",
+        },
+        {
+            snippet: "His guidance has been instrumental in my professional development. Thank you, Baraa!",
+            giverName: "Olga Petrova",
+            countryFlag: "https://placehold.co/24x16/D52B1E/FFFFFF?text=RU",
+            linkedinPostUrl: "",
+        },
+        {
+            snippet: "I highly value Baraa's teaching. His ability to explain difficult concepts is a gift.",
+            giverName: "Ahmed Hassan",
+            countryFlag: "https://placehold.co/24x16/C8102E/007A4D?text=EG",
+            linkedinPostUrl: "",
+        },
+        {
+            snippet: "Baraa's real-world examples make all the difference. I feel prepared for any data challenge now.",
+            giverName: "Mia Chen",
+            countryFlag: "https://placehold.co/24x16/DE2910/000000?text=SG",
+            linkedinPostUrl: "",
+        },
+        {
+            snippet: "His courses are engaging, practical, and highly informative. I couldn't have asked for a better instructor.",
+            giverName: "Lucas Ferreira",
+            countryFlag: "https://placehold.co/24x16/009739/FEDD00?text=PT",
+            linkedinPostUrl: "",
+        },
+        {
+            snippet: "Baraa has a unique way of teaching that makes even the most difficult concepts seem simple.",
+            giverName: "Anna Novak",
+            countryFlag: "https://placehold.co/24x16/FFC72C/FFFFFF?text=CZ",
+            linkedinPostUrl: "",
+        },
+        {
+            snippet: "An inspiring and talented educator. Baraa's dedication to his students is truly impressive.",
+            giverName: "Omar Bakri",
+            countryFlag: "https://placehold.co/24x16/DE2910/FFFFFF?text=SY",
+            linkedinPostUrl: "",
+        },
+        {
+            snippet: "I’ve learned a lot from Baraa. He is a phenomenal teacher who makes learning fun.",
+            giverName: "Isabella Martinez",
+            countryFlag: "https://placehold.co/24x16/009739/FEDD00?text=AR",
+            linkedinPostUrl: "",
+        },
+        {
+            snippet: "Baraa's teaching has been a guiding light in my data science journey. A truly exceptional mentor.",
+            giverName: "Yusuf Khan",
+            countryFlag: "https://placehold.co/24x16/007A3D/FFFFFF?text=PK",
+            linkedinPostUrl: "",
+        },
+        {
+            snippet: "The best data instructor I've had. He has a gift for making everything click.",
+            giverName: "Elena Rodriguez",
+            countryFlag: "https://placehold.co/24x16/006325/D21034?text=MX",
+            linkedinPostUrl: "",
+        },
+        {
+            snippet: "Baraa's commitment to teaching and student success is inspiring. He's a truly dedicated educator.",
+            giverName: "Kenji Sato",
+            countryFlag: "https://placehold.co/24x16/BC002D/FFFFFF?text=JP",
+            linkedinPostUrl: "",
+        },
+    ];
 
-        let currentTestimonialIndex = 0;
-        const testimonialContentDiv = document.getElementById('testimonial-content');
-        const testimonialCounterSpan = document.getElementById('testimonial-counter');
-        const prevBtn = document.getElementById('prev-btn');
-        const nextBtn = document.getElementById('next-btn');
+    let currentTestimonialIndex = 0;
+    const testimonialContentDiv = document.getElementById('testimonial-content');
+    const testimonialCounterSpan = document.getElementById('testimonial-counter');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
 
-        function displayTestimonial() {
-            const testimonial = testimonials[currentTestimonialIndex];
-            if (!testimonial) return; // Guard against empty testimonials
+    function displayTestimonial() {
+        const testimonial = testimonials[currentTestimonialIndex];
+        if (!testimonial) return;
 
-            // Construct the HTML for the testimonial
-            let linkedinLinkHtml = '';
-            if (testimonial.linkedinPostUrl) {
-                linkedinLinkHtml = `
-                    <a
-                        href="${testimonial.linkedinPostUrl}"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="ml-3 text-blue-500 hover:text-blue-700 transition-colors duration-200"
-                        title="View LinkedIn Post"
-                    >
-                        <i class="fab fa-linkedin text-xl"></i>
-                    </a>
-                `;
-            } else {
-                linkedinLinkHtml = `
-                    <span
-                        class="ml-3 text-gray-400 cursor-not-allowed"
-                        title="Link not active yet"
-                    >
-                        <i class="fab fa-linkedin text-xl"></i>
-                    </span>
-                `;
-            }
+        let linkedinLinkHtml = '';
+        if (testimonial.linkedinPostUrl) {
+            linkedinLinkHtml = `
+                <a
+                    href="${testimonial.linkedinPostUrl}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="ml-3 text-blue-500 hover:text-blue-700 transition-colors duration-200"
+                    title="View LinkedIn Post"
+                >
+                    <i class="fab fa-linkedin text-xl"></i>
+                </a>
+            `;
+        } else {
+            linkedinLinkHtml = `
+                <span
+                    class="ml-3 text-gray-400 cursor-not-allowed"
+                    title="Link not active yet"
+                >
+                    <i class="fab fa-linkedin text-xl"></i>
+                </span>
+            `;
+        }
 
-            testimonialContentDiv.innerHTML = `
-                <p class="text-gray-700 text-xl italic leading-relaxed mb-4">
-                    "${testimonial.snippet}"
-                </p>
-                <div class="flex items-center justify-center text-gray-600 text-lg font-medium">
-                    <img
-                        src="${testimonial.countryFlag}"
-                        alt="Country Flag"
-                        class="w-12 h-9 rounded mr-4 shadow-md border-2 border-gray-400"
-                    />
-                    <span>- ${testimonial.giverName}</span>
-                    ${linkedinLinkHtml}
-                </div>
-            `;
-            testimonialCounterSpan.textContent = `${currentTestimonialIndex + 1} of ${testimonials.length}`;
-        }
+        testimonialContentDiv.innerHTML = `
+            <p class="text-gray-700 text-xl italic leading-relaxed mb-4">
+                "${testimonial.snippet}"
+            </p>
+            <div class="flex items-center justify-center text-gray-600 text-lg font-medium">
+                <img
+                    src="${testimonial.countryFlag}"
+                    alt="Country Flag"
+                    class="w-12 h-9 rounded mr-4 shadow-md border-2 border-gray-400"
+                />
+                <span>- ${testimonial.giverName}</span>
+                ${linkedinLinkHtml}
+            </div>
+        `;
+        testimonialCounterSpan.textContent = `${currentTestimonialIndex + 1} of ${testimonials.length}`;
+    }
 
-        function handlePrevious() {
-            currentTestimonialIndex = (currentTestimonialIndex === 0) ? testimonials.length - 1 : currentTestimonialIndex - 1;
-            displayTestimonial();
-        }
+    function handlePrevious() {
+        currentTestimonialIndex = (currentTestimonialIndex === 0) ? testimonials.length - 1 : currentTestimonialIndex - 1;
+        displayTestimonial();
+        startAutoAdvance();
+    }
 
-        function handleNext() {
-            currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonials.length;
-            displayTestimonial();
-        }
+    function handleNext() {
+        currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonials.length;
+        displayTestimonial();
+        startAutoAdvance();
+    }
 
-        // Event Listeners for navigation buttons
-        prevBtn.addEventListener('click', handlePrevious);
-        nextBtn.addEventListener('click', handleNext);
+    // Event Listeners for navigation buttons
+    prevBtn.addEventListener('click', handlePrevious);
+    nextBtn.addEventListener('click', handleNext);
 
-        // Auto-advance testimonial every 7 seconds
-        let autoAdvanceTimer;
-        function startAutoAdvance() {
-            if (autoAdvanceTimer) clearInterval(autoAdvanceTimer); // Clear any existing timer
-            autoAdvanceTimer = setInterval(handleNext, 7000); // 7 seconds
-        }
+    // Auto-advance testimonial every 7 seconds
+    let autoAdvanceTimer;
+    function startAutoAdvance() {
+        if (autoAdvanceTimer) clearInterval(autoAdvanceTimer); // Clear any existing timer
+        autoAdvanceTimer = setInterval(handleNext, 7000); // 7 seconds
+    }
 
-        // Initialize display and start auto-advance on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            displayTestimonial();
-            startAutoAdvance();
-        });
-
-        // Optional: Reset timer on manual navigation
-        prevBtn.addEventListener('click', () => {
-            startAutoAdvance(); // Restart timer after manual click
-        });
-        nextBtn.addEventListener('click', () => {
-            startAutoAdvance(); // Restart timer after manual click
-        });
-
-    </script>
+    // Initialize display and start auto-advance on page load
+    document.addEventListener('DOMContentLoaded', () => {
+        displayTestimonial();
+        startAutoAdvance();
+    });
+</script>
 </body>
 </html>
